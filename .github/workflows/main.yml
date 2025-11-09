@@ -29,4 +29,4 @@ jobs:
           RAILWAY_DEPLOY_HOOK: ${{ secrets.RAILWAY_DEPLOY_HOOK }}
         run: |
           echo "Chamando o deploy automático no Railway..."
-          curl -X POST $RAILWAY_DEPLOY_HOOK
+          curl -X "https://webhook.railway.app/deploy/v1/projects/ab1cde2f-3g4h-5i6j-7k8l-9m0n1o2p3q4r"
