@@ -22,8 +22,7 @@ jobs:
 
       - name: Run tests
         run: npx jest --ci
-
-      # Etapa de deploy automático via Railway CLI (atualizada)
+        
       - name: Deploy to Railway
         if: success()
         env:
