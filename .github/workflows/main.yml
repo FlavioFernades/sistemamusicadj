@@ -1,4 +1,4 @@
-name: CI/CD - Sistema MusicaDJ
+name: CI/CD - Sistema MusicADJ
 
 on:
   push:
@@ -23,10 +23,13 @@ jobs:
       - name: Run tests
         run: npx jest --ci
 
+      #Etapa de deploy automático via Railway CLI
       - name: Deploy to Railway
         if: success()
         env:
-          RAILWAY_DEPLOY_HOOK: ${{ secrets.RAILWAY_DEPLOY_HOOK }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          echo "Chamando o deploy automático no Railway..."
-          curl -X POST $RAILWAY_DEPLOY_HOOK
+          echo " Iniciando deploy via Railway CLI..."
+          npm install -g @railway/cli
+          railway login --token $RAILWAY_TOKEN
+          railway up --yes
