@@ -24,11 +24,15 @@ jobs:
         run: npx jest --ci
         
       - name: Deploy to Railway
-        if: success()
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: |
-          echo "Iniciando deploy via Railway CLI..."
-          npm install -g @railway/cli
-          export RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }}
-          railway up --yes --service sistemamusicadj
+        if: success()
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          echo "Iniciando deploy via Railway CLI..."
+          # Instala a CLI do Railway
+          npm install -g @railway/cli
+          # A variável de ambiente RAILWAY_TOKEN é usada automaticamente pelo railway up
+          # O export é redundante se já estiver no bloco env:, mas não atrapalha
+          export RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }}
+          # EXECUTA O DEPLOY (AGORA SEM O --yes)
+          railway up --service sistemamusicadj
