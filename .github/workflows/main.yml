@@ -23,13 +23,13 @@ jobs:
       - name: Run tests
         run: npx jest --ci
 
-      #Etapa de deploy automático via Railway CLI
-      - name: Deploy to Railway
+         - name: Deploy to Railway
         if: success()
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          echo " Iniciando deploy via Railway CLI..."
+          echo "🚀 Iniciando deploy via Railway CLI..."
           npm install -g @railway/cli
-          railway login --token $RAILWAY_TOKEN
+          echo $RAILWAY_TOKEN | railway login --ci
+          railway up --yes
           railway up --yes
