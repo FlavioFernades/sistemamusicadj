@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
@@ -5,7 +6,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const SECRET_KEY = 'segredo123'; // Em produção, use variável de ambiente
+const SECRET_KEY = process.env.SECRET_KEY; // Em produção, use variável de ambiente
 
 // Middleware
 app.use(cors());
