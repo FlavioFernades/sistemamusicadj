@@ -23,10 +23,10 @@ jobs:
       - name:  Executar testes (via Node)
         run: node ./node_modules/jest/bin/jest.js --ci --runInBand
 
-      - name:  Deploy automático no Render
+      - name:  Deploy automático no Railway
         if: success()
         env:
-          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+          RAILWAY_DEPLOY_HOOK: ${{ secrets.RAILWAY_DEPLOY_HOOK }}
         run: |
-          echo "Chamando o deploy automático no Render..."
-          curl -X POST $RENDER_DEPLOY_HOOK
+          echo "Chamando o deploy automático no Railway..."
+          curl -X POST "$RAILWAY_DEPLOY_HOOK"
