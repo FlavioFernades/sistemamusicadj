@@ -4,8 +4,10 @@
   "description": "Sistema MusicADJ - Aplicação simples com autenticação e listagem de músicas",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "jest"
+  "start": "node server.js",
+  "test": "node node_modules/jest/bin/jest.js --ci"
+}
+    
   },
   "keywords": [],
   "author": "Flávio Fernandes",
