@@ -26,7 +26,7 @@ jobs:
       - name:  Deploy automático no Railway
         if: success()
         env:
-          RAILWAY_DEPLOY_HOOK: ${{ secrets.RAILWAY_DEPLOY_HOOK }}
+          RAILWAY_DEPLOY_HOOK: ${{ 	https://webhook.site/6a82410c-7f3c-4b5a-991b-97b85c57d94d }}
         run: |
           echo "Executando deploy no Railway..."
           curl -X POST $RAILWAY_DEPLOY_HOOK
