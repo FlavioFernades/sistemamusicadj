@@ -1,16 +1,14 @@
 {
   "name": "sistemamusicadj",
   "version": "1.0.0",
-  "description": "Sistema MusicADJ - Aplicação simples com autenticação e listagem de músicas",
+  "description": "Sistema simples de músicas com autenticação JWT e CI/CD automatizado.",
   "main": "server.js",
   "scripts": {
-  "start": "node server.js",
-  "test": "node node_modules/jest/bin/jest.js --ci"
-}
-    
+    "start": "node server.js",
+    "test": "node node_modules/jest/bin/jest.js --ci"
   },
   "keywords": [],
-  "author": "Flávio Fernandes",
+  "author": "José Flávio Fernandes Pinheiro",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
@@ -20,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FlavioFernandes/sistemamusicadj.git"
+    "url": "https://github.com/FlavioFernandes/sistemamusicadj.git"
   },
   "bugs": {
     "url": "https://github.com/FlavioFernandes/sistemamusicadj/issues"
