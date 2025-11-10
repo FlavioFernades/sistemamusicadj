@@ -1,32 +1,33 @@
 name: CI/CD - Sistema MusicADJ
 
 on:
-  push:
-    branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
-  build-test-deploy:
-    runs-on: ubuntu-latest
+  build-test-deploy:
+    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Run tests
-        run: npx jest --ci
+      - name: Run tests
+        run: npx jest --ci
 
-      - name: Deploy to Railway
-        if: success()
-        env:
-          RAILWAY_DEPLOY_HOOK: ${{ https://webhook.railway.app/deploy/v1/projects/ab1cde2f-3g4h-5i6j-7k8l-9m0n1o2p3q4r }}
-        run: |
-          echo "Chamando o deploy automático no Railway..."
-          curl -X "https://webhook.railway.app/deploy/v1/projects/ab1cde2f-3g4h-5i6j-7k8l-9m0n1o2p3q4r"
+      - name: Deploy to Railway
+        if: success()
+        env:
+          RAILWAY_DEPLOY_HOOK: ${{ secrets.RAILWAY_DEPLOY_HOOK }}
+        run: |
+          echo "Chamando o deploy automático no Railway..."
+          # CORREÇÃO: Usar aspas duplas (") é obrigatório para que o Bash leia a URL corretamente.
+          curl -X POST "$RAILWAY_DEPLOY_HOOK"
