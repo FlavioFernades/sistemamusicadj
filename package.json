@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Sistema simples de músicas com autenticação JWT e CI/CD automatizado.",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "node node_modules/jest/bin/jest.js --ci"
+ "scripts": {
+  "start": "node server.js",
+  "test": "node ./node_modules/jest/bin/jest.js --ci --runInBand"
+}
+
   },
   "keywords": [],
   "author": "José Flávio Fernandes Pinheiro",
