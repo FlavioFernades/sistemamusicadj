@@ -1,5 +1,6 @@
 name: CI/CD - Sistema MusicADJ
 
+# 🚀 Dispara o pipeline sempre que houver push na branch main
 on:
   push:
     branches: [ main ]
@@ -9,24 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Clona o código do repositório
       - name:  Checkout do código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
+      # Configura o Node.js (versão 18)
       - name:  Configurar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name:  Instalar dependências
+      # Instala as dependências do projeto
+      - name: Instalar dependências
         run: npm install
 
-      - name:  Executar testes
-        run: npm test
+      # Executa os testes automatizados com Jest
+      - name: Executar testes
+        run: npx jest --ci
 
-      - name:  Deploy automático no Railway
+      # Faz o deploy automático no Render via Deploy Hook
+      - name: Deploy automático no Render
         if: success()
         env:
-          RAILWAY_DEPLOY_HOOK: ${{ 	https://webhook.site/6a82410c-7f3c-4b5a-991b-97b85c57d94d }}
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
-          echo "Executando deploy no Railway..."
-          curl -X POST $RAILWAY_DEPLOY_HOOK
+          echo "Chamando o deploy automático no Render..."
+          curl -X POST $RENDER_DEPLOY_HOOK
