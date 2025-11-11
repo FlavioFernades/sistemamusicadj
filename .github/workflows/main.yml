@@ -1,4 +1,4 @@
-name: CI/CD - Sistema MusicADJ
+name: CI/CD - Sistema MusicADJ (Render)
 
 on:
   push:
@@ -9,24 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name:  Checkout do código
+      # Baixar o código do repositório
+      - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name:  Configurar Node.js
+      # Configurar o Node.js (versão 18)
+      - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name:  Instalar dependências
+      # Instalar dependências do projeto
+      - name: Instalar dependências
         run: npm install
 
-      - name:  Executar testes (via Node)
+      # Executar testes automatizados com Jest
+      - name: Executar testes automatizados
         run: node ./node_modules/jest/bin/jest.js --ci --runInBand
 
-      - name:  Deploy automático no Railway
+      #  Deploy automático no Render
+      - name: Deploy automático no Render
         if: success()
-        env:
-          RAILWAY_DEPLOY_HOOK: ${{ secrets.RAILWAY_DEPLOY_HOOK }}
         run: |
-          echo "Chamando o deploy automático no Railway..."
-          curl -X POST "$RAILWAY_DEPLOY_HOOK"
+          echo "Chamando o deploy automático no Render..."
+          curl -X POST "https://api.render.com/deploy/srv-d498h5hr0fns738ejvu0?key=ziGBDxN9I5A"
