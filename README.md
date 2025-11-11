@@ -3,7 +3,7 @@
 **Autor:** José Flávio Fernandes Pinheiro  
 **Disciplina:** Desenvolvimento Web para Nuvem – UERN  
 **Atividade:** Implementação de Testes Automatizados e Integração Contínua (CI/CD)  
-**Deploy:** [https://sistemamusicadj-production.up.railway.app/](https://sistemamusicadj-production.up.railway.app/) *(ou versão Render se atualizada)*
+**Deploy:** https://sistemamusicadj.onrender.com/
 
 ---
 
@@ -83,3 +83,4 @@ O sistema foi conectado a um banco **PostgreSQL hospedado no Render**, utilizand
   - `musicas` → músicas cadastradas  
 
 📷 *Figura 3 – Página do sistema MusicADJ e resposta do endpoint `/pingdb`.*
+
